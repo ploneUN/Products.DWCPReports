@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head><title></title></head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+      <metal:main_macro define-macro="main">
+
+
+
+        <metal:body_macro metal:define-macro="body">
+          <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <p><em>Implementation Monitoring</em></p>
+        <h1 tal:content="here/Title">
+              Title or id
+          </h1>
+
+	  <p tal:content="structure here/baseline"></p>
+
+
+            <span tal:repeat="item
+            python:context.aq_parent.getRefs(relationship='RelatedCPOCode')">
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/Title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+            </span>
+
+
+
+
+        <h1> Assessment of progress against
+            the planned milestones</h1>
+ 
+           <div>
+               <table class="grid listing">
+                   <tr>
+                   <th>Planned Milestones/Expected Results</th>
+                   <th>Actual Progress</th>
+                   </tr>
+                   <tr>
+                       <tr tal:repeat="item context/listFolderContents">
+                           
+                           <td valign="top">
+                             <h3><a tal:content="item/Title"
+                                      tal:attributes="href
+                                      item/absolute_url"></a></h3>
+                              <p class="discreet">Click title to edit
+                              milestone progress report.</p>
+                                <p tal:replace="structure item/milestones"></p>
+                           </td>
+
+                           <td valign="top">
+                                    <b>Progress Update:</b>
+                                    <p><metal:block
+                                    use-macro="python:item.widget('progress_1',mode='view')">attach1</metal:block></p>
+                                    <b>Problems:</b>
+                                    <p><metal:block
+                                    use-macro="python:item.widget('problems',mode='view')">attach1</metal:block></p>
+                                    <b>Modifications:</b>
+                                    <p><metal:block
+                                    use-macro="python:item.widget('modifications',mode='view')">attach1</metal:block></p>
+                                    <b>Gender Concerns:</b>
+                                    <p><metal:block
+                                    use-macro="python:item.widget('gender_concerns',mode='view')">attach1</metal:block></p>
+                           </td>
+                       </tr>
+
+           </table>
+       </div>
+
+        </metal:body_macro>
+        <metal:footer_macro>
+           <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+                show related items if they exist
+            </div>
+    
+            <div tal:replace="structure provider:plone.belowcontentbody" />
+        </metal:footer_macro>
+
+      </metal:main_macro>
+
+    </div>
+
+  </body>
+
+</html>
+

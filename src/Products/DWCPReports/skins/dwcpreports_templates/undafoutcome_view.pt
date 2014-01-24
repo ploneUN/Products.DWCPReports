@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head><title></title></head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+      <metal:main_macro define-macro="main">
+
+      <p><em>UNDAF Outcome</em></p>
+          
+        <h1 tal:content="here/Title">
+              Title or id
+          </h1>
+          <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <metal:body_macro metal:define-macro="body">
+          <div tal:replace="structure provider:plone.abovecontentbody" />
+          <p class="documentDescription" tal:content="here/Description" />
+
+
+          <h3>Related CPO Outcomes</h3>
+          <div tal:repeat="partners python:context.getBRefs(relationship='RelatedUNDAF')">
+                <dl>
+                    <dt><a tal:attributes="href partners/absolute_url"
+                    tal:content="partners/Title">
+                </a>
+                </dt>
+                <dd tal:content="partners/Description"></dd>
+                </dl>
+          </div>
+
+
+        </metal:body_macro>
+
+        <metal:folderlisting_macro metal:define-macro="folderlisting"
+                                   tal:define="fl_macro here/folder_listing/macros/listing | nothing;
+                                               folderish here/isPrincipiaFolderish | nothing;">
+            <tal:if_folderlisting condition="python:folderish and fl_macro">
+                <metal:use_macro use-macro="fl_macro" />
+            </tal:if_folderlisting>
+        </metal:folderlisting_macro>
+
+
+        <metal:footer_macro>
+           <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+                show related items if they exist
+            </div>
+    
+            <div tal:replace="structure provider:plone.belowcontentbody" />
+        </metal:footer_macro>
+
+      </metal:main_macro>
+
+    </div>
+
+  </body>
+
+</html>
+

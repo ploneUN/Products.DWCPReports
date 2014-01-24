@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<object name="portal_types"
+        meta_type="Plone Types Tool">
+ <object name="RPSMonitoringPlan"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSPriority"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSCPO"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSBaseline"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSMilestone"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSCPCode"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="Partner"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="NDFDocument"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="UNDAFDocument"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSCPPriorityCode"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSIndicator"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="RPSIndicatorInterval"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="UNDAFOutcome"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="NDFPriority"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="PBOutcome"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="PBIndicator"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="DWCPCountryFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="NDFFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="UNDAFFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="PartnersFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+ <!-- ##code-section TYPES -->
+ <!-- ##/code-section TYPES -->
+</object>

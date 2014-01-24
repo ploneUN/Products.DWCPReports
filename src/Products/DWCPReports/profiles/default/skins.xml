@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<object name="portal_skins"
+        meta_type="Plone Skins Tool"
+        allow_any="False"
+        cookie_persistence="False"
+        request_varname="plone_skin">
+
+ <object name="dwcpreports_images"
+         meta_type="Filesystem Directory View"
+         directory="DWCPReports/skins/dwcpreports_images"/>
+ <object name="dwcpreports_styles"
+         meta_type="Filesystem Directory View"
+         directory="DWCPReports/skins/dwcpreports_styles"/>
+ <object name="dwcpreports_templates"
+         meta_type="Filesystem Directory View"
+         directory="DWCPReports/skins/dwcpreports_templates"/>
+ 
+ <skin-path name="*">
+  <layer insert-after="custom" 
+         name="dwcpreports_images"/>
+  <layer insert-after="custom" 
+         name="dwcpreports_styles"/>
+  <layer insert-after="custom" 
+         name="dwcpreports_templates"/>
+ </skin-path>
+
+</object>

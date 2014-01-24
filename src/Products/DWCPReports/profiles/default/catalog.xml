@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <index name="cpo_status" 
+         meta_type="FieldIndex">
+    <indexed_attr value="cpo_status"/>
+  </index>
+  <index name="milestone_status" 
+         meta_type="FieldIndex">
+    <indexed_attr value="milestone_status"/>
+  </index>
+  <column value="getCpo_status"/>
+  <column value="getMilestone_status"/>
+<!-- ##code-section FOOT -->
+<!-- ##/code-section FOOT -->
+</object>

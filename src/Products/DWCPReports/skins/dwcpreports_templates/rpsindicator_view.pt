@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head><title></title></head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+      <metal:main_macro define-macro="main">
+
+      <p><em>Outcome Indicator</em></p>
+
+        <h1 tal:content="here/Title">
+              Title or id
+          </h1>
+
+        <metal:body_macro metal:define-macro="body">
+          <div tal:replace="structure provider:plone.abovecontentbody" />
+
+          <p class="documentDescription" tal:content="here/Description" />
+
+           <div>
+
+       <h3>Indicator Interval Indicators</h3>
+       <p class="Description">Click to view and edit interval indicators</p>
+    
+       <ul>
+           <li tal:repeat="item here/listFolderContents"><a
+               tal:content="item/Title" tal:attributes="href
+               item/reference_url"></a></li>
+       </ul>
+
+    <h3>CPO Performance Monitoring Report</h3>
+
+       <table class="grid listing">
+           <tr>
+               <th>Indicator</th>
+               <th>Baseline</th>
+               <th>Intervals</th>
+               <th>Target</th>
+           </tr>
+           <tr>
+               <td valign="top" tal:content="here/Title"></td>
+               <td valign="top">
+                                <p tal:content="here/startDate"></p>
+                                <p tal:content="here/baseline"></p>
+                                </td>
+
+                 <td tal:condition="not:here/listFolderContents">
+                  <p class="discreet">
+                       No planned interval targets entered. Please
+                       add interval targets.</p>
+                 </td>
+                 <td tal:repeat="intervals here/listFolderContents"
+                     tal:condition="container/objectValues">
+                     <b><a tal:content="intervals/Title"
+                             tal:attributes="href
+                             intervals/reference_url"></a> </b>
+                       <hr />
+                       <b>Planned</b>
+                       <p tal:content="intervals/planned"></p>
+                       <div tal:condition="intervals/actual">
+                       <hr />
+                       <b>Actual</b>
+                       <p tal:content="intervals/actual"></p>
+                       </div>
+               </td>
+               <td valign="top">
+                   <p tal:content="here/endDate"></p>
+                   <p tal:content="here/target"></p></td>
+           </tr>
+       </table>
+
+
+         <metal:block use-macro="python:here.widget('file1',mode='view')">attach1</metal:block>
+
+        </metal:body_macro>
+        <metal:footer_macro>
+           <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+                show related items if they exist
+            </div>
+    
+            <div tal:replace="structure provider:plone.belowcontentbody" />
+        </metal:footer_macro>
+
+      </metal:main_macro>
+
+    </div>
+
+  </body>
+
+</html>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<atcttool>
+ <topic_indexes>
+  <!-- ##code-section indexes -->
+  <!-- ##/code-section indexes -->
+
+  <index name="cpo_status"
+     description=""
+     enabled="True" 
+     friendlyName="CPO Status">
+
+   <criteria>ATSelectionCriterion</criteria>
+
+  </index>
+
+  <index name="milestone_status"
+     description=""
+     enabled="True" 
+     friendlyName="CPO Milestone Status">
+
+   <criteria>ATSelectionCriterion</criteria>
+
+  </index>
+
+ </topic_indexes>
+ <topic_metadata>
+  <!-- ##code-section metadata -->
+  <!-- ##/code-section metadata -->
+
+  <metadata name="getCpo_status" 
+     description=""
+     enabled="True" 
+     friendlyName="CPO Status"/>
+
+  <metadata name="getMilestone_status" 
+     description=""
+     enabled="True" 
+     friendlyName="CPO Milestone Status"/>
+
+ </topic_metadata>
+</atcttool>

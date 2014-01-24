@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<import-steps>
+
+ 
+
+
+ <import-step 
+    id="DWCPReports-Update-RoleMappings" 
+    handler="Products.DWCPReports.setuphandlers.updateRoleMappings"
+    title="Update Workflow role mappings for DWCPReports"
+    version="2009-09-10T19:34:43.351583">
+   <dependency step="DWCPReports-QI-dependencies"/>
+   updates the workflow role mappings for DWCPReports
+ </import-step>
+
+ <import-step 
+    id="DWCPReports-postInstall" 
+    handler="Products.DWCPReports.setuphandlers.postInstall"
+    title="manual coded post-install for DWCPReports"
+    version="2009-09-10T19:34:43.351583">
+   <dependency step="DWCPReports-QI-dependencies"/>
+   manual coded post-install for DWCPReports
+ </import-step>
+
+<!-- ##code-section ADDITIONALSTEPS -->
+<!-- ##/code-section ADDITIONALSTEPS -->
+
+</import-steps>
+ 

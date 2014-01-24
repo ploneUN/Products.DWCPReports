@@ -1,0 +1,254 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head><title></title></head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+      <metal:main_macro define-macro="main">
+
+      <p><em>CPO</em></p>
+
+
+          
+        <h1 tal:content="here/Title">
+              Title or id
+          </h1>
+          <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <metal:body_macro metal:define-macro="body">
+          <div tal:replace="structure provider:plone.abovecontentbody" />
+
+
+          <p class="documentDescription" tal:content="here/Description" />
+
+          <b>Responsible Officer:</b>&nbsp<span
+              tal:replace="here/officer"></span>
+
+          <br />
+          <b>Status:</b>&nbsp<div tal:condition="exists:here/cpo_status">
+              <span tal:replace="here/cpo_status"></span></div>
+
+
+          <span tal:repeat="item
+            python:context.getRefs(relationship='RelatedCPOCode')">
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+            </span>
+
+           <span tal:repeat="item
+            python:context.getRefs(relationship='RelatedPBIndicator')">
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+            </span>
+
+           
+        
+
+          <h3>Main Assumptions</h3>
+          <ul>
+              <li tal:repeat="assumptions here/main_assumptions"
+                  tal:content="assumptions">
+              </li>
+          </ul>
+
+
+       <h3>CPO Implementation Monitoring Reports</h3>
+       <p class="discreet">Click on Starting Situations titles to add
+       and edit additional Milestones and Progress Reports.</p>
+
+        <table class="grid listing">
+            <tr>
+                <th style="width: 20em;">Starting Situation</th>
+                <th>Milestones</th>
+            </tr>
+            <tr tal:repeat="baselines here/baselines">
+                <td valign="top"><h2><a tal:attributes="href baselines/absolute_url"
+                            tal:content="baselines/Title"></a></h2>
+                
+                    <p class="documentDescription"><metal:block
+                                    use-macro="python:baselines.widget('baseline',mode='view')">attach1</metal:block></p>
+          
+                </td>
+                <td valign="top">
+                    
+                    <div tal:repeat="milestones baselines/milestones">
+                        <h2><a tal:attributes="href
+                                milestones/absolute_url"
+                                tal:content="milestones/Title"></a></h2>
+                        <p class="discreet">Click on the title above, to
+                        edit this Milestone and progress report.</p>
+                        <dl>
+                            <dt>Milestone</dt>
+                            <dd><metal:block
+                            use-macro="python:milestones.widget('milestones',mode='view')">attach1</metal:block></dd>
+
+                            <dt>Status</dt>
+                            <dd tal:condition="milestones/milestone_status |
+                            nothing">
+                            <metal:block
+                            use-macro="python:milestones.widget('milestone_status',mode='view')">attach1</metal:block></dd>
+
+
+
+
+                            <dt>Progress Update</dt>
+                            <dd>
+                            <span
+                                tal:condition="not:milestones/progress_1"><p
+                                class="discreet">No progress
+                                update has been entered.</p></span>
+                            <metal:block
+                            use-macro="python:milestones.widget('progress_1',mode='view')">attach1</metal:block></dd>
+
+                            <dt>Problems</dt>
+                            <dd>
+                            <span
+                                tal:condition="not:milestones/problems"><p
+                                class="discreet">No problems
+                                has been entered.</p></span>
+                            <metal:block
+                            use-macro="python:milestones.widget('problems',mode='view')">attach1</metal:block></dd>
+
+                           <dt>Modifications</dt>
+                            <dd>
+                            <span
+                                tal:condition="not:milestones/modifications"><p
+                                class="discreet">No modifications 
+                                update has been entered.</p></span>
+                            <metal:block
+                            use-macro="python:milestones.widget('modifications',mode='view')">attach1</metal:block></dd>
+
+                           <dt>Gender concerns</dt>
+                            <dd>
+                            <span
+                                tal:condition="not:milestones/gender_concerns"><p
+                                class="discreet">No gender concerns
+                                update has been entered.</p></span>
+                            <metal:block
+                            use-macro="python:milestones.widget('gender_concerns',mode='view')">attach1</metal:block></dd>
+
+                         <dt tal:condition="milestones/file1/size |
+                         milestones/files2/size | milestones/file3/size">Files attached to this Milestone
+                         report</dt>
+
+                            <dd tal:condition="milestones/file1/size">
+                            <metal:block
+                            use-macro="python:milestones.widget('file1',mode='view')">attach1</metal:block>
+                            </dd>
+
+                            <dd tal:condition="milestones/file2/size">
+                            <metal:block
+                            use-macro="python:milestones.widget('file2',mode='view')">attach1</metal:block>
+                            </dd>
+
+                           <dd tal:condition="milestones/file3/size">
+                            <metal:block
+                            use-macro="python:milestones.widget('file3',mode='view')">attach1</metal:block>
+                            </dd>
+                        </dl>
+                        
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+ 
+      
+       <h3>CPO Performance Monitoring Reports</h3>
+       <p class="discreet">Click on indicators to edit and view interval
+       targets.</p>
+
+        <table class="grid listing">
+            <tr>
+                <th>Performance Indicators</th>
+                <th>Targets</th>
+            </tr>
+            <tr tal:repeat="indicators here/indicators">
+                <td><a tal:attributes="href indicators/absolute_url"
+                        tal:content="indicators/Title"></a></td>
+                <td tal:content="indicators/target"></td>
+            </tr>
+        </table>
+          
+        <hr />
+
+        <div
+            tal:condition="python:context.getRefs(relationship='RelatedPartner')">
+            <h3>Related Partners</h3>
+        <span tal:repeat="item
+            python:context.getRefs(relationship='RelatedPartner')">
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/Title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+         </span>
+        </div>
+
+        <div
+            tal:condition="python:context.getRefs(relationship='RelatedUNDAF')">
+            <h3>Link to UNDAF Outcomes</h3>
+        <span tal:repeat="item
+            python:context.getRefs(relationship='RelatedUNDAF')">
+            <p tal:content="python:item.aq_parent.Title()"></p>
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/Title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+         </span>
+        </div>
+
+        <div
+            tal:condition="python:context.getRefs(relationship='RelatedNDFPriority')">
+            <h3>Link to NDF Priorities</h3>
+        <span tal:repeat="item
+            python:context.getRefs(relationship='RelatedNDFPriority')">
+            <p tal:content="python:item.aq_parent.Title()"></p>
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/Title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+         </span>
+        </div>
+
+
+
+
+       </metal:body_macro>
+
+        <metal:footer_macro>
+           <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+                show related items if they exist
+            </div>
+    
+            <div tal:replace="structure provider:plone.belowcontentbody" />
+        </metal:footer_macro>
+
+      </metal:main_macro>
+
+    </div>
+
+  </body>
+
+</html>
+

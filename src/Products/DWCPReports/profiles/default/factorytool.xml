@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+ <factorytypes>
+  <type portal_type="RPSMonitoringPlan"/>
+  <type portal_type="RPSPriority"/>
+  <type portal_type="RPSCPO"/>
+  <type portal_type="RPSBaseline"/>
+  <type portal_type="RPSMilestone"/>
+  <type portal_type="RPSCPCode"/>
+  <type portal_type="Partner"/>
+  <type portal_type="NDFDocument"/>
+  <type portal_type="UNDAFDocument"/>
+  <type portal_type="RPSCPPriorityCode"/>
+  <type portal_type="RPSIndicator"/>
+  <type portal_type="RPSIndicatorInterval"/>
+  <type portal_type="UNDAFOutcome"/>
+  <type portal_type="NDFPriority"/>
+  <type portal_type="PBOutcome"/>
+  <type portal_type="PBIndicator"/>
+  <type portal_type="DWCPCountryFolder"/>
+  <type portal_type="NDFFolder"/>
+  <type portal_type="UNDAFFolder"/>
+  <type portal_type="PartnersFolder"/>
+ </factorytypes>
+</object>

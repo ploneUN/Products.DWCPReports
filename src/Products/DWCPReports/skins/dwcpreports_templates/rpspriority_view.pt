@@ -1,0 +1,121 @@
+<html  metal:use-macro="here/main_template/macros/master" i18n:domain="plone" >
+
+  <head><title>Custom view of MyMessage.</title></head>
+
+
+  <body>
+    <div metal:fill-slot="main" >
+
+        <p><em>Priority</em></p>
+
+        <h1 tal:content="here/Title"></h1>
+
+              <p class="documentDescription" tal:content="here/Description" />
+
+        <h3>Country Programme Outcomes for <span
+                tal:replace="here/title"/></h3>
+        <p class="discreet">Click on the CPO to view and edit milestone
+        progress reports, links to NDF and UNDAF documents, links to
+        Partners and responsible programme officers</p>
+
+            <dl tal:condition="here/listFolderContents"
+                tal:repeat="item context/listFolderContents">
+                <dt><a tal:content="item/Title"
+                                    tal:attributes="href
+                                    item/absolute_url"></a></dt>
+                    <dd tal:content="item/Description"></dd>
+           </dl>
+
+        <hr />
+
+        <h3>Outcome Monitoring Table - <span tal:replace="here/title" /></h3>
+
+         <span tal:repeat="item
+            python:context.getRefs(relationship='RelatedPriorityCode')">
+            <dl>
+                <dt><a tal:attributes="href item/absolute_url"
+                    tal:content="item/Title"></a>
+                </dt>
+                <dd tal:content="item/Description"></dd>
+                </dl>
+            </span>
+
+        <div>
+            <table class="grid listing">
+                <tr>
+                    <th>Country Programme Outcomes</th>
+                    <th>Links to National Development Frameworks, UNDAF</th>
+                    <th>Links / contributes to ILO Operational P&B
+                        Outcomes</th>
+                    <th>Strategic Partners</th>
+                    <th>Responsible Official</th>
+                </tr>
+                <tr tal:repeat="item
+                    context/listFolderContents">
+                    <td>
+                        <dl>
+                            <dt><a tal:content="item/Title"
+                                    tal:attributes="href
+                                    item/absolute_url"></a></dt>
+                                <dd tal:content="item/Description"></dd>
+                         </dl>
+                    </td>
+                    <td>
+
+                         <span tal:repeat="ndfpriority
+                            python:item.getRefs(relationship='RelatedNDFPriority')">
+                            <b><p
+                                tal:content="python:ndfpriority.aq_parent.Title()"></p></b>
+                            <dl>
+                                <dt><a tal:attributes="href ndfpriority/absolute_url"
+                                    tal:content="ndfpriority/Title"></a>
+                                </dt>
+                                <dd tal:content="ndfpriority/Description"></dd>
+                                </dl>
+                         </span>
+
+
+                        <span tal:repeat="undaf
+                            python:item.getRefs(relationship='RelatedUNDAF')">
+                            <b><p
+                                tal:content="python:undaf.aq_parent.Title()"></p></b>
+                            <dl>
+                                <dt><a tal:attributes="href undaf/absolute_url"
+                                    tal:content="undaf/Title"></a>
+                                </dt>
+                                <dd tal:content="undaf/Description"></dd>
+                                </dl>
+                         </span>
+
+                    </td>
+                    <td>
+                        <span tal:repeat="undaf
+                            python:item.getRefs(relationship='RelatedPBIndicator')">
+                            <dl>
+                                <dt><a tal:attributes="href undaf/absolute_url"
+                                    tal:content="undaf/Title"></a>
+                                </dt>
+                                <dd tal:content="undaf/Description"></dd>
+                                </dl>
+                         </span>
+
+                    </td>
+                    <td>
+                        <span tal:repeat="item
+                            python:item.getRefs(relationship='RelatedPartner')">
+                             <dl>
+                                <dt tal:content="item/Title"></dt>
+                                    <dd tal:content="item/Description"></dd>
+                             </dl>
+                        </span>
+                    </td>
+                    <td><span tal:replace="item/officer"></span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+  </body>
+
+</html>
+
